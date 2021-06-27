@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 from accountapp.models import HelloWorld
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from accountapp.forms import AccountUpdateForm
 # Create your views here.
 
 
@@ -25,6 +26,7 @@ def hello_world(request):
         return render(request, 'accountapp\hello_world.html', context={'hello_world_list': hello_world_list})
 
 
+# 아이디 비밀번호 생성
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -32,7 +34,16 @@ class AccountCreateView(CreateView):
     template_name = 'accountapp/create.html'
 
 
+# 유저 정보 보기 생성
 class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+
+# 비밀번호 변경 생성
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/update.html'
