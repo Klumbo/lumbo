@@ -11,6 +11,6 @@ class Comment(models.Model):
     writer = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name='comment')
 
-    content = models.TextField(null=False)
+    content = models.TextField(max_length=300, null=False, )
 
     created_at = models.DateTimeField(auto_now=True)

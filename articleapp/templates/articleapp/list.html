@@ -31,7 +31,7 @@
 </style>
     {% if article_list %}
     <div class="container">
-        {% for article in article_list %}
+        {% for article in article_list reversed %}
         <a href="{% url 'articleapp:detail' pk=article.pk %}">
             {% include 'snippets/card.html' with article=article %} 
         </a>
@@ -40,7 +40,7 @@
     <script src="{% static 'js/magicgrid.js' %}"></script>
     {% else %}
     <div class="text-center">
-        <h1>No articles Yet!</h1>
+        <h1>아직 글이 없습니다!</h1>
     </div>
     {% endif %}
 
@@ -48,7 +48,7 @@
 
     <div style="text-align: center;">
         <a href="{% url 'articleapp:create' %}" class='btn btn-dark rounded-pill  mt-3 mb-3 px-3'>
-            Create Article
+            새 글 쓰기
         </a>
     </div>
     

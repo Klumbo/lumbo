@@ -28,7 +28,7 @@
 </style>
     {% if project_list %}
     <div class="container">
-        {% for project in project_list %}
+        {% for project in project_list reversed %}
         <a href="{% url 'projectapp:detail' pk=project.pk %}">
             {% include 'snippets/card_project.html' with project=project %} 
         </a>
@@ -37,7 +37,7 @@
     <script src="{% static 'js/magicgrid.js' %}"></script>
     {% else %}
     <div class="text-center">
-        <h1>No Projects Yet!</h1>
+        <h1>아직 프로젝트가 없습니다!</h1>
     </div>
     {% endif %}
 
@@ -45,7 +45,7 @@
 
     <div style="text-align: center;">
         <a href="{% url 'projectapp:create' %}" class='btn btn-dark rounded-pill  mt-3 mb-3 px-3'>
-            Create Project
+            새 프로젝트 생성
         </a>
     </div>
     

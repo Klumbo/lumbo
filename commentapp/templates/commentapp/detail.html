@@ -1,18 +1,20 @@
 <div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem; border-color: #bbb;">
     <div>
-        <strong>
-            {{ comment.writer.profile.nickname }}
-        </strong>
+        <a href="{% url 'accountapp:detail' pk=comment.writer.pk %}">
+            <strong>
+                {{ comment.writer.profile.nickname }}
+            </strong>
+        </a>
         &nbsp&nbsp&nbsp
         {{ comment.created_at }}
     </div>
-    <div style="margin: 1rem 0;">
+    <div style="margin: 1rem 0; word-break:break-all;">
         {{ comment.content }}
     </div>
     {% if comment.writer == user %}
     <div style="text-align: right;">
         <a href="{% url 'commentapp:delete' pk=comment.pk %}" class="btn btn-outline-danger rounded-pill">
-            Delete
+            삭제
         </a>
     </div>
     {% endif %}
