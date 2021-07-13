@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
     <div>
@@ -9,6 +8,7 @@
             <h1>
                 {{ target_article.title }}
             </h1>
+
             <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
                 <h5>
                     {{ target_article.writer.profile.nickname }}
@@ -16,9 +16,9 @@
             </a>
             <hr>
 
-            <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;" src="{{ target_article.image.url }}" alt="">
-
-            <div class="text-start">
+            <img style="width: 80%; border-radius: 1rem; margin: 2rem 0;" src="{{ target_article.image.url }}" alt="">
+            
+            <div class="text-start px-3">
                 {{ target_article.content | safe }}
             </div>
 
@@ -30,6 +30,9 @@
                 삭제
             </a>
             {% endif %}
+            
+            <hr>
+            {% include 'likeapp/like.html' with target_article=target_article user=user %}
             <hr>
 
             {% for comment in target_article.comment.all %}

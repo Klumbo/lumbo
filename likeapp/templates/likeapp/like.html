@@ -1,0 +1,11 @@
+{% load heart_check %}
+<div style="height: 2rem; text-align: left; padding-left: 2rem;">
+    <a href="{% url 'likeapp:article_like' pk=target_article.pk %}">
+        <i style="vertical-align: middle; font-size: 1.5rem; color: red" class="material-icons">
+            {% heart_check target_article user %}
+        </i>  
+    </a>
+    <span style="vertical-align: middle; font-size: 1.2rem; ">
+        {{ target_article.like }}
+    </span>
+</div>

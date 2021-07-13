@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from likeapp.models import LikeRecord
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 from django.utils.decorators import method_decorator
@@ -36,8 +37,8 @@ class ArticleDetailView(DetailView, FormMixin):
     template_name = 'articleapp/detail.html'
 
 
-@method_decorator(account_ownership_required, 'get')
-@method_decorator(account_ownership_required, 'post')
+@ method_decorator(account_ownership_required, 'get')
+@ method_decorator(account_ownership_required, 'post')
 class ArticleUpdateView(UpdateView):
     model = Article
     context_object_name = 'target_article'
@@ -48,8 +49,8 @@ class ArticleUpdateView(UpdateView):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
-@method_decorator(account_ownership_required, 'get')
-@method_decorator(account_ownership_required, 'post')
+@ method_decorator(account_ownership_required, 'get')
+@ method_decorator(account_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
     model = Article
     context_object_name = 'target_article'
